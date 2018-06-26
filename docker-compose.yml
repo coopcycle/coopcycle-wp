@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3.5'
 
 services:
   db:
@@ -15,6 +15,8 @@ services:
   wordpress:
     depends_on:
       - db
+    external_links:
+      - coopcycle-web_nginx_1
     image: wordpress:latest
     ports:
       - '9000:80'
@@ -28,3 +30,8 @@ services:
 
 volumes:
   dbdata:
+
+networks:
+  default:
+    external:
+      name: coopcycleweb_default
